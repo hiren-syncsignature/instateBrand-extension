@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Profile Customizer",
+  "version": "1.0.0",
+  "description": "Customize your LinkedIn profile banner and profile picture with dynamic templates",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/in/*"
+      ],
+      "js": [
+        "src/content/index.ts"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/*",
+        "dist/*"
+      ],
+      "matches": [
+        "*://*.linkedin.com/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "LinkedIn Profile Customizer"
+  }
+}
